@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @voter.email %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @voter.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @voter.password %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @voter.phone %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @voter.approved %>
+</p>
+
+<%= link_to 'Edit', edit_voter_path(@voter) %> |
+<%= link_to 'Back', voters_path %>

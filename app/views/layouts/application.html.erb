@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ChaguoLako</title>
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+
+	<h2> Chaguo Lako </h2>
+	<%= link_to image_tag("/assets/NDSLogo.png"), root_path, :class => "logo" %>
+	<hr/>
+
+	<%= yield %>
+
+</body>
+</html>
