@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>ChaguoLako</title>
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
+	
 </head>
 <body>
-
+	<% if admin_is_logged_in? %>
+	<%= session[:user].name %> |
+	<%= link_to "Log Out", log_out_path%>
+	<% else %>
+	<%= link_to "Register", new_voter_path %> |
+	<%= link_to "Sign In", new_session_path %>
+	<% end %>
+	
 	<h2> Chaguo Lako </h2>
 	<%= link_to image_tag("/assets/NDSLogo.png"), root_path, :class => "logo" %>
 	<hr/>
+	
+
 
 	<%= yield %>
 

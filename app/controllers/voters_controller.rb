@@ -1,5 +1,6 @@
 class VotersController < ApplicationController
   before_action :set_voter, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_admin, only: [:index, :show, :edit, :destroy]
 
   # GET /voters
   # GET /voters.json
@@ -28,7 +29,7 @@ class VotersController < ApplicationController
 
     respond_to do |format|
       if @voter.save
-        format.html { redirect_to root_path, notice: "Thanks " + @voter.username + " for registering!"}
+        format.html { redirect_to root_path, notice: "Thanks " + @voter.username + " for registering!.. We will send you an email confirming your approval status not too long from now.."}
         format.json { render action: 'show', status: :created, location: @voter }
       else
         format.html { render action: 'new' }
@@ -71,4 +72,4 @@ class VotersController < ApplicationController
     def voter_params
       params.require(:voter).permit(:email, :username, :password, :phone, :approved)
     end
-end
+  end

@@ -2,7 +2,10 @@
 <body>
 <div id="welcome_container">
 <h2>Welcome to Chaguo lako</h2>
-<%= link_to "Register", new_voter_path %>
-<p>Register to have your opinion</p>
+
+<% if admin_is_logged_in? %>
+<%= link_to "View All Voters", voters_path %>
+<% end %>
+
 </div>
 </body>
