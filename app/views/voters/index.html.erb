@@ -1,11 +1,11 @@
 <h1>Listing voters</h1>
+<p id="notice"><%= notice %></p>
 
 <table>
   <thead>
     <tr>
       <th>Email</th>
       <th>Username</th>
-      <th>Password</th>
       <th>Phone</th>
       <th>Approved</th>
       <th></th>
@@ -15,21 +15,31 @@
   </thead>
 
   <tbody>
+
     <% @voters.each do |voter| %>
+    <% if !voter.approved%>
+    <tr class="false">         
+      <% else %>
       <tr>
-        <td><%= voter.email %></td>
+        <% end %>
+
+       
         <td><%= voter.username %></td>
-        <td><%= voter.password %></td>
+         <td><%= voter.email %></td>
         <td><%= voter.phone %></td>
         <td><%= voter.approved %></td>
         <td><%= link_to 'Show', voter %></td>
+        <%  %>
         <td><%= link_to 'Edit', edit_voter_path(voter) %></td>
         <td><%= link_to 'Destroy', voter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if !voter.approved%>
+        <td><%= link_to 'Approve', voter_approve_path(voter), method: :post, data: { confirm: 'Are you sure you want to Approve.?' } %></td>
+        <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Voter', new_voter_path %>
+  <%= link_to 'New Voter', new_voter_path %>

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	<strong>Question:</strong>
+	<%= @poll.question %>
+</p>
+
+<p>
+	<strong>Start date:</strong>
+	<%= @poll.start_date %>
+</p>
+
+<p>
+	<strong>Deadline:</strong>
+	<%= @poll.deadline %>
+</p>
+
+<p>
+	<strong>Created by:</strong>
+	<%= @poll.admin.name %>
+</p>
+<p>
+	<strong>Options</strong>
+	<ol>
+		<% @poll.options.each  do |option| %>
+		<li>
+			<p>
+				<%= option.name %> | 
+				<%= link_to 'Edit', edit_poll_option_path(@poll, option) %>
+			</p>
+		</li>
+		<% end %>
+	</ol>
+</p>
+<h2><strong>Add an Option</strong></h2>
+	<%= form_for([@poll, @poll.options.build]) do |f| %>
+		<div class="field">
+			<%= f.label :name %><br>
+			<%= f.text_area :name %>
+		</div>
+		
+		<div class="actions">
+			<%= f.submit %>
+		</div>
+	<%end%>
+<%= link_to 'Edit', edit_poll_path(@poll) %> |
+<%= link_to 'Back', polls_path %>
+<br/><br/>
+<%= button_to 'Notify Voters Of New Poll..!', notify_users_path %>
+

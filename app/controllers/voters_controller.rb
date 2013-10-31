@@ -1,11 +1,11 @@
 class VotersController < ApplicationController
-  before_action :set_voter, only: [:show, :edit, :update, :destroy]
+  before_action :set_voter, only: [:show, :edit, :update, :destroy, :approve]
   before_action :authorize_admin, only: [:index, :show, :edit, :destroy]
 
   # GET /voters
   # GET /voters.json
   def index
-    @voters = Voter.all
+    @voters = Voter.all.order("approved")
   end
 
   # GET /voters/1
@@ -20,6 +20,7 @@ class VotersController < ApplicationController
 
   # GET /voters/1/edit
   def edit
+
   end
 
   # POST /voters
@@ -43,7 +44,7 @@ class VotersController < ApplicationController
   def update
     respond_to do |format|
       if @voter.update(voter_params)
-        format.html { redirect_to @voter, notice: @voter.username + ' was successfully updated.' }
+        format.html { redirect_to voters_path, notice: @voter.username + ' was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -60,6 +61,13 @@ class VotersController < ApplicationController
       format.html { redirect_to voters_url }
       format.json { head :no_content }
     end
+  end
+
+  def approve
+    @voter.approved = true
+    @voter.save!
+    VoterMailer.approval_email(@voter).deliver
+    redirect_to voters_path, notice: "#{@voter.username} has been approved.!"
   end
 
   private

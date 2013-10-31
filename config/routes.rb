@@ -1,9 +1,19 @@
 ChaguoLako::Application.routes.draw do
+  resources :options
+
+  resources :polls do
+    resources :options
+  end
+
   #get "sessions/new"
   get "welcome/index"
   get "welcome/about"
   get "log_out" => "sessions#destroy", :as => "log_out"
+  post "notify_users" => "polls#notify_users", :as => "notify_users"
+
   resources :voters, :sessions
+
+  match "/voters/:id/approve" => "voters#approve", :as => "voter_approve", via: [:get, :post]
 
   root "welcome#index"
   

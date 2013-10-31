@@ -6,6 +6,12 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'quiet_assets'
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'email_validator'
+gem 'date_validator'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Email:</strong>
@@ -9,11 +8,12 @@
   <strong>Username:</strong>
   <%= @voter.username %>
 </p>
-
+<% if session[:user].name != "Percila" %>
 <p>
   <strong>Password:</strong>
   <%= @voter.password %>
 </p>
+<% end %>
 
 <p>
   <strong>Phone:</strong>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  question: MyString
+  start_date: 2013-10-30 10:55:57
+  deadline: 2013-10-30 10:55:57
+  admin_id: 
+
+two:
+  question: MyString
+  start_date: 2013-10-30 10:55:57
+  deadline: 2013-10-30 10:55:57
+  admin_id: 

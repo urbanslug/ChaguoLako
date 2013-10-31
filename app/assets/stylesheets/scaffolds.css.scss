@@ -25,7 +25,7 @@ a {
   }
   &:hover {
     color: #fff;
-    background-color: #000;
+    background-color: green;
   }
 }
 
@@ -36,9 +36,14 @@ div {
 }
 
 #notice {
-  color: red;
-  
+  color: green;
 }
+
+.false, .false a{
+  color: red;
+  font-weight: bold;
+}
+
 
 .field_with_errors {
   padding: 2px;
