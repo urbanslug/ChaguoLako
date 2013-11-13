@@ -9,8 +9,8 @@
 	
 </head>
 <body>
-	<% if admin_is_logged_in? %>
-	<%= session[:user].name %> |
+	<% if user_is_logged_in? %>
+	<%= session[:user].username %> |
 	<%= link_to "Log Out", log_out_path%>
 	<% else %>
 	<%= link_to "Register", new_voter_path %> |

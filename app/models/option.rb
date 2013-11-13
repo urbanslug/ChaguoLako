@@ -1,5 +1,7 @@
 class Option < ActiveRecord::Base
   belongs_to :poll
+  has_many :votes
 
-  validates :option, presence: true
+  validates :name, presence: true
 end
+

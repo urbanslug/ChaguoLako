@@ -5,7 +5,9 @@
 
 <% if admin_is_logged_in? %>
 <%= link_to "View All Voters", voters_path %>
+<% end %>
 <br/><br/>
+<% if user_is_logged_in? %>
 <%= link_to "View All Polls", polls_path %>
 <% end %>
 

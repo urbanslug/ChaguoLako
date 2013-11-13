@@ -8,7 +8,7 @@
   <strong>Username:</strong>
   <%= @voter.username %>
 </p>
-<% if session[:user].name != "Percila" %>
+<% if session[:user].username != "Percila" %>
 <p>
   <strong>Password:</strong>
   <%= @voter.password %>

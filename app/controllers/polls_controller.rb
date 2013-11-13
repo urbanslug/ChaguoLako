@@ -11,6 +11,7 @@ class PollsController < ApplicationController
   # GET /polls/1
   # GET /polls/1.json
   def show
+    @vote = Vote.new
   end
 
   # GET /polls/new
@@ -19,17 +20,11 @@ class PollsController < ApplicationController
   end
 
   def notify_users
-    voters_adds = []
-    Voter.all.each do |voter| 
-      if voter.approved
-        voters_adds.push voter.email
-      end
-      end
-      voters_adds.each do |voter_add|
-        VoterMailer.new_poll_email(voter_add).deliver
-      end
-      redirect_to polls_path, notice: 'Poll was successfully emailed'
-    end
+    Voter.where('approved = ?', true).each do |voter|
+     VoterMailer.new_poll_email(voter.email).deliver
+   end
+   redirect_to polls_path, notice: 'Poll was successfully emailed'
+ end
 
   # GET /polls/1/edit
   def edit

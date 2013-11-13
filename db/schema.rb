@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030122758) do
+ActiveRecord::Schema.define(version: 20131106121046) do
 
   create_table "admins", force: true do |t|
     t.string   "email"
+    t.string   "username"
     t.string   "password"
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,5 +50,15 @@ ActiveRecord::Schema.define(version: 20131030122758) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "votes", force: true do |t|
+    t.integer  "option_id"
+    t.integer  "voter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["option_id"], name: "index_votes_on_option_id"
+  add_index "votes", ["voter_id"], name: "index_votes_on_voter_id"
 
 end

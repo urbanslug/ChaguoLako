@@ -2,7 +2,9 @@ ChaguoLako::Application.routes.draw do
   resources :options
 
   resources :polls do
-    resources :options
+    resources :options do
+      resources :votes
+    end
   end
 
   #get "sessions/new"
@@ -11,9 +13,13 @@ ChaguoLako::Application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   post "notify_users" => "polls#notify_users", :as => "notify_users"
 
-  resources :voters, :sessions
+  post "create_vote" => "votes#create", :as => "create_vote"
+
+  resources :voters, :sessions, :votes
 
   match "/voters/:id/approve" => "voters#approve", :as => "voter_approve", via: [:get, :post]
+
+
 
   root "welcome#index"
   

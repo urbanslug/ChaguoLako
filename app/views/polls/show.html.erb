@@ -17,34 +17,75 @@
 
 <p>
 	<strong>Created by:</strong>
-	<%= @poll.admin.name %>
+	<%= @poll.admin.username %>
+	
 </p>
 <p>
+	
+
+	
+	<% if @poll.user_has_voted?(session[:user].id) %>
+		<p> Sorry but you have already Voted.! </p>
+		<table>
+			<tr>
+				<th>Option</th>
+				<th># of Votes Cast</th>
+			</tr>
+			<% @poll.options.each do |option| %>
+			<tr>
+				<th><%= option.name %></th>
+				<th><%= option.votes.count %></th>
+			</tr>
+			<% end %>
+
+		</table>
+
+	<% else %>
 	<strong>Options</strong>
-	<ol>
-		<% @poll.options.each  do |option| %>
+
+
+	<%= form_for(@vote) do |f| %>
+
+	<% @poll.options.each  do |option| %>
+	<ul>
+		<% if voter_is_logged_in? %>
+		<p>
+			<%= radio_button_tag("option", option.id) %> <%= option.name %>
+			<% if admin_is_logged_in? %> | 
+			<%= link_to 'Edit', edit_poll_option_path(@poll, option) %>
+			<% end %>
+		</p>
+		<% else %>
 		<li>
-			<p>
-				<%= option.name %> | 
-				<%= link_to 'Edit', edit_poll_option_path(@poll, option) %>
-			</p>
+			<%= option.name %>
 		</li>
 		<% end %>
-	</ol>
+	</ul>
+	<% end %>
+	<div class="actions">
+		<%= f.submit "Cast Vote.!" %>
+	</div>
+	<% end %>
+	<% end %>
+
 </p>
+
+
+<% if admin_is_logged_in? %>
 <h2><strong>Add an Option</strong></h2>
-	<%= form_for([@poll, @poll.options.build]) do |f| %>
-		<div class="field">
-			<%= f.label :name %><br>
-			<%= f.text_area :name %>
-		</div>
-		
-		<div class="actions">
-			<%= f.submit %>
-		</div>
-	<%end%>
+<%= form_for([@poll, @poll.options.build]) do |f| %>
+<div class="field">
+	<%= f.label :name %><br>
+	<%= f.text_area :name %>
+</div>
+
+<div class="actions">
+	<%= f.submit %>
+</div>
+<%end%>
 <%= link_to 'Edit', edit_poll_path(@poll) %> |
 <%= link_to 'Back', polls_path %>
 <br/><br/>
 <%= button_to 'Notify Voters Of New Poll..!', notify_users_path %>
+<% end %>
 

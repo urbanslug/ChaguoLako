@@ -27,7 +27,7 @@ ChaguoLako::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.delivery_method = :smtp
 
   ActionMailer::Base.smtp_settings = {
@@ -35,7 +35,7 @@ ChaguoLako::Application.configure do
     port: 587,
     domain: "gmail.com",
     user_name: "xxxxxx",
-    password: "xxxxxx",
+    password: "xxxx",
     authentication: "plain",
     enable_starttls_auto: true
   }
