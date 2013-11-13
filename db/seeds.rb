@@ -6,4 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Admin.create! :email => "you@somewhere.com", :password => "1234", :username => "Percila"
+#Deletes all admins.
+Admin.delete_all 
+
+#Creates a  new admin with the following credentials
+Admin.create! :email => ENV['ADMIN_EMAIL'], :password => ENV['ADMIN_PASSWORD'], :username => ENV['ADMIN_USERNAME'] 

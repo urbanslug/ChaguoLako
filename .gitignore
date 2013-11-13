@@ -14,3 +14,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+#Ignore all backup files.
+*swp
+
+#Ignore yaml file holding admin info
+#Enter file path to ignore only the one in config/
+/config/application.yml
